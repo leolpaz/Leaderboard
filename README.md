@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To-Do-List
+# Leaderboard
 
 > On this project I create a leaderboard using an external API.
 
@@ -14,10 +14,6 @@ On this milestone I set up the project, as well as create a basic HTML markup.
 - CSS
 - JS
 - Webpack
-
-## Live Demo
-
-[Live Demo Link](https://rawcdn.githack.com/leolpaz/To-Do-list/b89846e8bf1493d7b1f1d0eb35dc6a4e148c5202/dist/index.html)
 
 ## Get Started
 
