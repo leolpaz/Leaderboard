@@ -18,22 +18,19 @@
           <button class="refresh-button mx-4 mt-1" type="button">Refresh</button>
         </div>
         <table class="mx-4 table table-light table-striped border border-dark">
-          <tbody>
-          <tr><td>Example1: 85</td></tr>
-          <tr><td>Example2: 77</td></tr>
-          <tr><td>Example3: 71</td></tr>
-          <tr><td>Example4: 68</td></tr>
-          <tr><td>Example5: 12</td></tr>
-        </tbody>
+          <tbody id="table-body">
+          </tbody>
         </table>
       </div>
       <div class="d-flex flex-column justify-conter-center col-4">
         <h2 class="score-title m-4">Add your score</h2>
-        <form class="mx-4 d-flex flex-column" action="#">
-          <input class="border border-dark" type="text" placeholder="Your name" required>
-          <input class="border border-dark my-3" type="number" placeholder="Your score" required>
-          <button class="align-self-end" type="button">Submit</button>
+        <form class="mx-4 d-flex flex-column" id="submit-form">
+
+          <input class="border border-dark" id="name" type="text" placeholder="Your name" required>
+          <input class="border border-dark my-3" id="score" type="number" placeholder="Your score" required>
+          <button class="align-self-end" type="submit">Submit</button>
         </form>
+
       </div>
     </div>
   </main>
