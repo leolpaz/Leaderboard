@@ -41,7 +41,17 @@ function listOnLoad() {
   });
 }
 
+function refresh() {
+  const refreshBtn = document.getElementById('refresh');
+  refreshBtn.addEventListener('click', () => {
+    const table = document.getElementById('table-body');
+    table.innerHTML = '';
+    listOnLoad();
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   submitListener();
   listOnLoad();
+  refresh();
 });
