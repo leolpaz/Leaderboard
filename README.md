@@ -2,11 +2,11 @@
 
 # To-Do-List
 
-> On this project we create a leaderboard using an external API.
+> On this project I create a leaderboard using an external API.
 
 ![screenshot](./app_screenshot.png)
 
-On this milestone I set up the project
+On this milestone I set up the project, as well as create a basic HTML markup.
 
 ## Built With
 
