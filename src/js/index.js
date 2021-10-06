@@ -12,13 +12,6 @@ async function scoreArray() {
   return response.json();
 }
 
-function addScore(name, score) {
-  const table = document.getElementById('table-body');
-  const scoreElement = document.createElement('tr');
-  scoreElement.innerHTML = `<td>${name}: ${score}</td>`;
-  table.appendChild(scoreElement);
-}
-
 async function listOnLoad() {
   const table = document.getElementById('table-body');
   let sArray = [];
@@ -26,7 +19,9 @@ async function listOnLoad() {
   sArray.sort((a, b) => b.score - a.score);
   table.innerHTML = '';
   sArray.forEach((element) => {
-    addScore(element.user, element.score);
+    const scoreElement = document.createElement('tr');
+    scoreElement.innerHTML = `<td>${element.user}: ${element.score}</td>`;
+    table.appendChild(scoreElement);
   });
 }
 
