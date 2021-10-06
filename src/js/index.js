@@ -1,57 +1,68 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
-import Score from './score.js';
 
-class ScoreArray {
-  static returnArray() {
-    const scoreArray = JSON.parse(localStorage.getItem('scoreArray') || '[]');
-    return scoreArray;
-  }
+const scoreArray = async () => {
+  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  return response.json();
+};
 
-  static saveScore(score) {
-    const scoreArray = ScoreArray.returnArray();
-    scoreArray.push(score);
-    localStorage.setItem('scoreArray', JSON.stringify(scoreArray));
-  }
-}
-
-function submitScore(name, score) {
+const listOnLoad = async () => {
   const table = document.getElementById('table-body');
-  const scoreElement = document.createElement('tr');
-  scoreElement.innerHTML = `<td>${name}: ${score}</td>`;
-  table.appendChild(scoreElement);
-}
+  let sArray = [];
+  await scoreArray().then((scores) => { sArray = scores.result; });
+  sArray.sort((a, b) => b.score - a.score);
+  table.innerHTML = '';
+  sArray.forEach((element) => {
+    const scoreElement = document.createElement('tr');
+    scoreElement.innerHTML = `<td>${element.user}: ${element.score}</td>`;
+    table.appendChild(scoreElement);
+  });
+};
 
-function submitListener() {
+const submitScore = async (name, score) => {
+  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: `${name}`,
+      score: `${score}`,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error('Your submission did not reach the server');
+  } else {
+    listOnLoad();
+  }
+};
+
+const submitListener = () => {
   const submit = document.getElementById('submit-form');
   submit.addEventListener('submit', (event) => {
     event.preventDefault();
     const name = document.getElementById('name').value;
     const score = document.getElementById('score').value;
-    const newScore = new Score(name, score);
     submit.reset();
-    ScoreArray.saveScore(newScore);
     submitScore(name, score);
   });
-}
-
-function listOnLoad() {
-  ScoreArray.returnArray().forEach((element) => {
-    submitScore(element.name, element.score);
-  });
-}
-
-function refresh() {
-  const refreshBtn = document.getElementById('refresh');
-  refreshBtn.addEventListener('click', () => {
-    const table = document.getElementById('table-body');
-    table.innerHTML = '';
-    listOnLoad();
-  });
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   submitListener();
   listOnLoad();
-  refresh();
+});
+
+document.addEventListener('click', (event) => {
+  const isButton = event.target.id;
+  if (isButton === 'refresh') {
+    listOnLoad();
+  }
 });
