@@ -6,7 +6,7 @@
 
 ![screenshot](./app_screenshot.png)
 
-On this milestone I set up the project, as well as create a basic HTML markup.
+On this milestone I connected the project to the API, as well as created the functionality to refresh, getting score from the API, and ADD, adding a score to the API
 
 ## Built With
 
@@ -14,7 +14,7 @@ On this milestone I set up the project, as well as create a basic HTML markup.
 - CSS
 - JS
 - Webpack
-
+- Fetch API
 ## Get Started
 
 - Clone the repository with git clone https://github.com/leolpaz/Leaderboard.git;
