@@ -2,17 +2,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
 
 async function scoreArray() {
-  let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BaCuaRTa0eGsbOGKOkI1/scores/', {
-    method:'GET',
+  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
+    method: 'GET',
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-});
-  return await response.json();
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  return response.json();
 }
-
-
 
 function addScore(name, score) {
   const table = document.getElementById('table-body');
@@ -21,23 +19,34 @@ function addScore(name, score) {
   table.appendChild(scoreElement);
 }
 
-async function submitScore(name, score) {
- let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BaCuaRTa0eGsbOGKOkI1/scores/', {
-    method:'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body:JSON.stringify({
-        "user": `${name}`,
-        "score": `${score}`   
-    })
-})
-if (!response.ok) {
-  throw new Error("Your submission did not reach the server")
-} else {
-  addScore(name, score)
+async function listOnLoad() {
+  const table = document.getElementById('table-body');
+  let sArray = [];
+  await scoreArray().then((scores) => { sArray = scores.result; });
+  sArray.sort((a, b) => b.score - a.score);
+  table.innerHTML = '';
+  sArray.forEach((element) => {
+    addScore(element.user, element.score);
+  });
 }
+
+async function submitScore(name, score) {
+  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: `${name}`,
+      score: `${score}`,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error('Your submission did not reach the server');
+  } else {
+    listOnLoad();
+  }
 }
 
 function submitListener() {
@@ -51,24 +60,14 @@ function submitListener() {
   });
 }
 
-async function listOnLoad() {
-  const table = document.getElementById('table-body');
-  let sArray = [];
-  await scoreArray().then((scores) => {sArray = scores.result})
-  table.innerHTML = ""
-  sArray.forEach((element) => {
-    addScore(element.user, element.score);
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   submitListener();
-  listOnLoad()
+  listOnLoad();
 });
 
 document.addEventListener('click', (event) => {
-  const isButton = event.target.id
-  if (isButton === 'refresh'){
-    listOnLoad()
+  const isButton = event.target.id;
+  if (isButton === 'refresh') {
+    listOnLoad();
   }
-})
+});
