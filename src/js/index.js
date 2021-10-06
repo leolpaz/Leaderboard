@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
 
 async function scoreArray() {
-  let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rvyYy9iLp76dZi185ZOZ/scores/', {
+  let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BaCuaRTa0eGsbOGKOkI1/scores/', {
     method:'GET',
     headers: {
       'Accept': 'application/json',
@@ -22,7 +22,7 @@ function addScore(name, score) {
 }
 
 async function submitScore(name, score) {
- let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/rvyYy9iLp76dZi185ZOZ/scores/', {
+ let response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/BaCuaRTa0eGsbOGKOkI1/scores/', {
     method:'POST',
     headers: {
       'Accept': 'application/json',
@@ -52,26 +52,14 @@ function submitListener() {
 }
 
 async function listOnLoad() {
-  const table = document.getElementById('submit-form');
-  table.innerHTML = ""
+  const table = document.getElementById('table-body');
   let sArray = [];
   await scoreArray().then((scores) => {sArray = scores.result})
-  console.log(sArray)
+  table.innerHTML = ""
   sArray.forEach((element) => {
     addScore(element.user, element.score);
   });
 }
-
-// function refresh(isButton) {
-//   if(isButton === "refresh"){
-//     console.log('called')
-//     function callLoad(){
-//     const table = document.getElementById('table-body');
-//     table.innerHTML = '';
-//     listOnLoad();
-//   }
-//   refreshBtn.addEventListener('click', callLoad());}
-// }
 
 document.addEventListener('DOMContentLoaded', () => {
   submitListener();
@@ -82,6 +70,5 @@ document.addEventListener('click', (event) => {
   const isButton = event.target.id
   if (isButton === 'refresh'){
     listOnLoad()
-    console.log('called')
   }
 })
