@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
 
-async function scoreArray() {
+const scoreArray = async () => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
     method: 'GET',
     headers: {
@@ -10,9 +10,9 @@ async function scoreArray() {
     },
   });
   return response.json();
-}
+};
 
-async function listOnLoad() {
+const listOnLoad = async () => {
   const table = document.getElementById('table-body');
   let sArray = [];
   await scoreArray().then((scores) => { sArray = scores.result; });
@@ -23,9 +23,9 @@ async function listOnLoad() {
     scoreElement.innerHTML = `<td>${element.user}: ${element.score}</td>`;
     table.appendChild(scoreElement);
   });
-}
+};
 
-async function submitScore(name, score) {
+const submitScore = async (name, score) => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
     method: 'POST',
     headers: {
@@ -42,9 +42,9 @@ async function submitScore(name, score) {
   } else {
     listOnLoad();
   }
-}
+};
 
-function submitListener() {
+const submitListener = () => {
   const submit = document.getElementById('submit-form');
   submit.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -53,7 +53,7 @@ function submitListener() {
     submit.reset();
     submitScore(name, score);
   });
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   submitListener();
