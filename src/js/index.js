@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style.css';
+import '../assets/style.css';
 
 const scoreArray = async () => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
@@ -15,15 +15,26 @@ const scoreArray = async () => {
 const listOnLoad = async () => {
   const table = document.getElementById('table-body');
   let sArray = [];
-  await scoreArray().then((scores) => { sArray = scores.result; });
+  await scoreArray().then((scores) => {
+    sArray = scores.result;
+  });
   sArray.sort((a, b) => b.score - a.score);
   table.innerHTML = '';
-  sArray.forEach((element) => {
-    const scoreElement = document.createElement('tr');
-    scoreElement.innerHTML = `<td>${element.user}: ${element.score}</td>`;
-    table.appendChild(scoreElement);
-  });
-};
+  sArray.forEach((element, index) => {
+      if (index === 0) {
+        table.innerHTML += `<tr class='table-custom-first border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+      } else if (index === 1) {
+        table.innerHTML += `<tr class='table-custom-second border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+      } else if (index === 2) {
+        table.innerHTML += `<tr class='table-custom-third border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+      } else if (index % 2 === 0) {
+        table.innerHTML += `<tr class='table-active'><td>${element.user}: ${element.score}</td></tr>`;
+      } else {
+        table.innerHTML += `<tr><td>${element.user}: ${element.score}</td></tr>`;
+      }
+    })
+  }
+
 
 const submitScore = async (name, score) => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
