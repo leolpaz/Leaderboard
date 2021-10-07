@@ -6,7 +6,7 @@
 
 ![screenshot](./app_screenshot.png)
 
-On this milestone I connected the project to the API, as well as created the functionality to refresh, getting score from the API, and ADD, adding a score to the API
+On this milestone I added styling to the project as well as made it responsive and added some QoL like the refresh button showing if it's dones or currently refreshing.
 
 ## Built With
 
