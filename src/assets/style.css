@@ -1,0 +1,42 @@
+.refresh-button {
+  height: 38px;
+  border-color: rgb(0, 248, 124);
+  box-shadow: 4px 4px 1px -1px rgba(17, 126, 71, 0.534);
+  border-radius: 15%;
+}
+
+.submit-btn {
+  height: 38px;
+  border-color: rgb(175, 17, 17);
+  box-shadow: 4px 4px 1px -1px rgba(116, 8, 8, 0.322);
+  border-radius: 15%;
+}
+
+.score-title {
+  height: 46px;
+  justify-self: center;
+}
+
+.table-custom-first {
+  background-repeat: no-repeat;
+  background-color: #fff3cd;
+  background-image: url(../assets/crown-first.png);
+  background-position: 97% 50%;
+  background-size: 28px;
+}
+
+.table-custom-second {
+  background-repeat: no-repeat;
+  background-color: #c0c0c0;
+  background-image: url(../assets/crown-second.png);
+  background-position: 97% 50%;
+  background-size: 28px;
+}
+
+.table-custom-third {
+  background-repeat: no-repeat;
+  background-color: #f8d7da;
+  background-image: url(../assets/crown-third.png);
+  background-position: 97% 50%;
+  background-size: 28px;
+}
