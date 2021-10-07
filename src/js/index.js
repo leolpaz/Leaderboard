@@ -21,20 +21,19 @@ const listOnLoad = async () => {
   sArray.sort((a, b) => b.score - a.score);
   table.innerHTML = '';
   sArray.forEach((element, index) => {
-      if (index === 0) {
-        table.innerHTML += `<tr scope="row" class='table-custom-first border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
-      } else if (index === 1) {
-        table.innerHTML += `<tr class='table-custom-second border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
-      } else if (index === 2) {
-        table.innerHTML += `<tr class='table-custom-third border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
-      } else if (index % 2 === 0) {
-        table.innerHTML += `<tr class='table-active'><td>${element.user}: ${element.score}</td></tr>`;
-      } else {
-        table.innerHTML += `<tr><td>${element.user}: ${element.score}</td></tr>`;
-      }
-    })
-  }
-
+    if (index === 0) {
+      table.innerHTML += `<tr scope="row" class='table-custom-first border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+    } else if (index === 1) {
+      table.innerHTML += `<tr class='table-custom-second border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+    } else if (index === 2) {
+      table.innerHTML += `<tr class='table-custom-third border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+    } else if (index % 2 === 0) {
+      table.innerHTML += `<tr class='table-active'><td>${element.user}: ${element.score}</td></tr>`;
+    } else {
+      table.innerHTML += `<tr><td>${element.user}: ${element.score}</td></tr>`;
+    }
+  });
+};
 
 const submitScore = async (name, score) => {
   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/Jr8ve03OdWKSKifJ8KiL/scores/', {
@@ -74,11 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', async (event) => {
   const isButton = event.target.id;
   if (isButton === 'refresh') {
-    const btn = document.getElementsByClassName('refresh-button')[0]
-    btn.innerHTML = 'Refreshing'
+    const btn = document.getElementsByClassName('refresh-button')[0];
+    btn.innerHTML = 'Refreshing';
     await listOnLoad().then(() => {
-      btn.innerHTML = 'Refresh'
-      btn.blur()
+      btn.innerHTML = 'Refresh';
+      btn.blur();
     });
   }
 });
