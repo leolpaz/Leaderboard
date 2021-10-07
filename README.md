@@ -15,6 +15,11 @@ On this milestone I added styling to the project as well as made it responsive a
 - JS
 - Webpack
 - Fetch API
+
+## Live Demo
+
+[Live Demo Link](https://leolpaz.github.io/Leaderboard/)
+
 ## Get Started
 
 - Clone the repository with git clone https://github.com/leolpaz/Leaderboard.git;
