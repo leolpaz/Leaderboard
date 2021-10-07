@@ -8,12 +8,12 @@
 .submit-btn {
   height: 38px;
   border-color: rgb(175, 17, 17);
-  box-shadow: 4px 4px 1px -1px rgba(175, 17, 17, 0.534);
+  box-shadow: 4px 4px 1px -1px rgba(116, 8, 8, 0.322);
   border-radius: 15%;
 }
 
 .score-title {
-  height: 54px;
+  height: 46px;
   justify-self: center;
 }
 

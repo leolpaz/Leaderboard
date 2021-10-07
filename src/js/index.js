@@ -71,9 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
   listOnLoad();
 });
 
-document.addEventListener('click', (event) => {
+document.addEventListener('click', async (event) => {
   const isButton = event.target.id;
   if (isButton === 'refresh') {
-    listOnLoad();
+    const btn = document.getElementsByClassName('refresh-button')[0]
+    btn.innerHTML = 'Refreshing'
+    await listOnLoad().then(() => {
+      btn.innerHTML = 'Refresh'
+    });
   }
 });
