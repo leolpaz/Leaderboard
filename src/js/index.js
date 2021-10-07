@@ -22,7 +22,7 @@ const listOnLoad = async () => {
   table.innerHTML = '';
   sArray.forEach((element, index) => {
       if (index === 0) {
-        table.innerHTML += `<tr class='table-custom-first border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
+        table.innerHTML += `<tr scope="row" class='table-custom-first border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
       } else if (index === 1) {
         table.innerHTML += `<tr class='table-custom-second border border-dark'><td>${element.user}: ${element.score}</td></tr>`;
       } else if (index === 2) {
@@ -78,6 +78,7 @@ document.addEventListener('click', async (event) => {
     btn.innerHTML = 'Refreshing'
     await listOnLoad().then(() => {
       btn.innerHTML = 'Refresh'
+      btn.blur()
     });
   }
 });
