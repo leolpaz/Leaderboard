@@ -1,5 +1,15 @@
 .refresh-button {
   height: 38px;
+  border-color: rgb(0, 248, 124);
+  box-shadow: 4px 4px 1px -1px rgba(17, 126, 71, 0.534);
+  border-radius: 15%;
+}
+
+.submit-btn {
+  height: 38px;
+  border-color: rgb(175, 17, 17);
+  box-shadow: 4px 4px 1px -1px rgba(175, 17, 17, 0.534);
+  border-radius: 15%;
 }
 
 .score-title {
